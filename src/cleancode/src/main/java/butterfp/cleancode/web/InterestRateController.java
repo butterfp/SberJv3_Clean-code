@@ -13,8 +13,12 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/rate")
 public class InterestRateController {
+    private static final int BASE_RATE = 10;
+    private static final int INTRODUCTORY_BONUS = 2;
+    private static final int INTRODUCTORY_MONTHS = 3;
+
     @PostMapping
-    public int calc(@RequestBody RateRequest request) {
+    public int calculateRate(@RequestBody RateRequest request) {
         if (request.date() == null || request.id() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Необходимы дата и id");
         }
@@ -24,10 +28,10 @@ public class InterestRateController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Дата не должна быть в будущем");
         }
 
-        if (today.isBefore(request.date().plusMonths(3))) {
-            return 10 + 2;
+        if (today.isBefore(request.date().plusMonths(INTRODUCTORY_MONTHS))) {
+            return BASE_RATE + INTRODUCTORY_BONUS;
         }
-        return 10;
+        return BASE_RATE;
     }
 
     public record RateRequest(LocalDate date, UUID id) {}
