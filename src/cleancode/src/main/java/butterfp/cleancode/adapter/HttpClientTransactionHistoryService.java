@@ -1,6 +1,6 @@
-package org.butterfp.sj3.adapter;
+package butterfp.cleancode.adapter;
 
-import org.butterfp.sj3.service.ClientTransactionHistoryService;
+import butterfp.cleancode.service.ClientTransactionHistoryService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
