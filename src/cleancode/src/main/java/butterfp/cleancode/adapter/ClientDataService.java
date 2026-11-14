@@ -1,4 +1,4 @@
-package butterfp.cleancode.web;
+package butterfp.cleancode.adapter;
 
 import org.springframework.stereotype.Service;
 

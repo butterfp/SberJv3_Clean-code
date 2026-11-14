@@ -1,4 +1,4 @@
-package butterfp.cleancode.web;
+package butterfp.cleancode.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
