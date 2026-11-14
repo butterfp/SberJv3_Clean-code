@@ -25,7 +25,8 @@ class InterestRateTest {
                                       BigDecimal purchases, int expectedRate) {
         LocalDate openingDate = LocalDate.of(2026, 1, 31);
 
-        assertThat(InterestRate.calculate(openingDate, today, hasSberPrime, purchases))
-                .isEqualTo(expectedRate);
+        int rate = InterestRate.calculate(openingDate, today, hasSberPrime, purchases);
+
+        assertThat(rate).isEqualTo(expectedRate);
     }
 }
