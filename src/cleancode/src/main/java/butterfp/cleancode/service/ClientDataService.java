@@ -1,4 +1,4 @@
-package org.butterfp.sj3.service;
+package butterfp.cleancode.service;
 
 import java.util.UUID;
 

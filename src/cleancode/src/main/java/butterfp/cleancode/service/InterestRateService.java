@@ -1,7 +1,5 @@
 package butterfp.cleancode.service;
 
-import butterfp.cleancode.adapter.ClientDataService;
-import butterfp.cleancode.adapter.ClientTransactionHistoryService;
 import butterfp.cleancode.model.InterestRate;
 import org.springframework.stereotype.Service;
 
