@@ -13,9 +13,11 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/rate")
 public class InterestRateController {
-    private static final int BASE_RATE = 10;
-    private static final int INTRODUCTORY_BONUS = 2;
-    private static final int INTRODUCTORY_MONTHS = 3;
+    private final InterestRateService interestRateService;
+
+    public InterestRateController(InterestRateService interestRateService) {
+        this.interestRateService = interestRateService;
+    }
 
     @PostMapping
     public int calculateRate(@RequestBody RateRequest request) {
@@ -28,10 +30,7 @@ public class InterestRateController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Дата не должна быть в будущем");
         }
 
-        if (today.isBefore(request.date().plusMonths(INTRODUCTORY_MONTHS))) {
-            return BASE_RATE + INTRODUCTORY_BONUS;
-        }
-        return BASE_RATE;
+        return interestRateService.calc(request.date(), request.id(), today);
     }
 
     public record RateRequest(LocalDate date, UUID id) {}
