@@ -28,5 +28,6 @@ public class HttpClientDataService implements ClientDataService {
         return profile.hasSberPrime();
     }
 
-    private record ClientProfile(Boolean hasSberPrime) {}
+    private record ClientProfile(Boolean hasSberPrime) {
+    }
 }

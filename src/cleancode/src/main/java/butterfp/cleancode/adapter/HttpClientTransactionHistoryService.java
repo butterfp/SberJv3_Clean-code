@@ -30,5 +30,6 @@ public class HttpClientTransactionHistoryService implements ClientTransactionHis
         return purchases.totalPurchases();
     }
 
-    private record Purchases(BigDecimal totalPurchases) {}
+    private record Purchases(BigDecimal totalPurchases) {
+    }
 }

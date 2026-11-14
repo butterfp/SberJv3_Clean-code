@@ -11,6 +11,7 @@ import java.util.UUID;
 @Service
 public class InterestRateService {
     private final ClientDataService clientData;
+
     private final ClientTransactionHistoryService transactionHistory;
 
     public InterestRateService(ClientDataService clientData,

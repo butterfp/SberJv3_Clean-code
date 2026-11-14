@@ -24,7 +24,9 @@ class InterestRateIntegrationTest {
     private static final String CLIENT_ID = "550e8400-e29b-41d4-a716-446655440000";
 
     private static HttpServer upstream;
+
     private static ConfigurableApplicationContext context;
+
     private static MockMvc mvc;
 
     @BeforeAll
