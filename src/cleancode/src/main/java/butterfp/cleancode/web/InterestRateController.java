@@ -1,5 +1,6 @@
 package butterfp.cleancode.web;
 
+import butterfp.cleancode.model.AccountType;
 import butterfp.cleancode.service.InterestRateService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,8 +32,14 @@ public class InterestRateController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Дата не должна быть в будущем");
         }
 
-        return interestRateService.calc(request.date(), request.id(), today);
+        return interestRateService.calc(request.date(), request.id(), today, request.accountType());
     }
 
-    public record RateRequest(LocalDate date, UUID id) {}
+    public record RateRequest(LocalDate date, UUID id, AccountType accountType) {
+        public RateRequest {
+            if (accountType == null) {
+                accountType = AccountType.SAVINGS;
+            }
+        }
+    }
 }

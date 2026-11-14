@@ -1,6 +1,6 @@
 package butterfp.cleancode.service;
 
-import butterfp.cleancode.model.InterestRate;
+import butterfp.cleancode.model.AccountType;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -20,9 +20,13 @@ public class InterestRateService {
     }
 
     public int calc(LocalDate openingDate, UUID clientId, LocalDate today) {
+        return calc(openingDate, clientId, today, AccountType.SAVINGS);
+    }
+
+    public int calc(LocalDate openingDate, UUID clientId, LocalDate today, AccountType accountType) {
         boolean hasSberPrime = clientData.hasSberPrime(clientId);
         YearMonth previousMonth = YearMonth.from(today).minusMonths(1);
         BigDecimal totalPurchases = transactionHistory.totalPurchases(clientId, previousMonth);
-        return InterestRate.calculate(openingDate, today, hasSberPrime, totalPurchases);
+        return accountType.createAccount().calculate(openingDate, today, hasSberPrime, totalPurchases);
     }
 }
