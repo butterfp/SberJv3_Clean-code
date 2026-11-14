@@ -10,12 +10,15 @@ import static com.google.common.truth.Truth.assertThat;
 class Sj3ApplicationTests {
 
     @Test
-    void contextLoads() {
-        try (var context = new SpringApplicationBuilder(CleancodeApplication.class)
-                .web(WebApplicationType.NONE)
-                .run()) {
-            assertThat(context.getBean(InterestRateController.class)).isNotNull();
+    void registersInterestRateController() {
+        var application = new SpringApplicationBuilder(CleancodeApplication.class).web(WebApplicationType.NONE);
+
+        try (var context = application.run()) {
+            var controllers = context.getBeansOfType(InterestRateController.class);
+
+            assertThat(controllers).hasSize(1);
         }
     }
+
 
 }
