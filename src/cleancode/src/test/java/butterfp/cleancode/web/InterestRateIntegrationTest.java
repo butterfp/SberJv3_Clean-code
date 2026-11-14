@@ -36,6 +36,7 @@ class InterestRateIntegrationTest {
                 exchange -> sendJson(exchange, """
                         {"hasSberPrime":true}
                         """));
+        // TODO Проверить параметр month в запросе к заглушке, чтобы тест обнаруживал запрос покупок за неверный месяц.
         upstream.createContext("/clients/" + CLIENT_ID + "/transactions/purchases",
                 exchange -> sendJson(exchange, """
                         {"totalPurchases":50000}

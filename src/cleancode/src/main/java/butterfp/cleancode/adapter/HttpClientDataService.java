@@ -13,6 +13,7 @@ public class HttpClientDataService implements ClientDataService {
     private final RestClient client;
 
     public HttpClientDataService(@Value("${clients.profile.base-url}") String baseUrl) {
+        // TODO Перевести оба HTTP-адаптера на общую настройку RestClient с таймаутами подключения и чтения ответа.
         client = RestClient.create(baseUrl);
     }
 

@@ -24,6 +24,7 @@ public class HttpClientTransactionHistoryService implements ClientTransactionHis
                 .uri("/clients/{id}/transactions/purchases?month={month}", clientId, month.toString())
                 .retrieve()
                 .body(Purchases.class);
+        // TODO Выделить ошибку некорректного ответа внешнего сервиса и возвращать клиенту HTTP 502 через общий обработчик API.
         if (purchases == null || purchases.totalPurchases() == null) {
             throw new RestClientException("Transaction history is missing totalPurchases");
         }

@@ -27,6 +27,8 @@ public class InterestRateController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Необходимы дата и id");
         }
 
+        // TODO Внедрить Clock с часовым поясом расчёта ставки,
+        // чтобы тестировать смену суток и месяца с фиксированным временем.
         LocalDate today = LocalDate.now();
         if (request.date().isAfter(today)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Дата не должна быть в будущем");
