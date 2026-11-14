@@ -1,8 +1,8 @@
-package org.butterfp.sj3.web;
+package butterfp.cleancode.web;
 
+import butterfp.cleancode.CleancodeApplication;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
-import org.butterfp.sj3.Application;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,7 @@ class InterestRateIntegrationTest {
         upstream.start();
         String upstreamUrl = "http://127.0.0.1:" + upstream.getAddress().getPort();
 
-        context = new SpringApplicationBuilder(Application.class).run(
+        context = new SpringApplicationBuilder(CleancodeApplication.class).run(
                 "--server.port=0",
                 "--server.address=127.0.0.1",
                 "--clients.profile.base-url=" + upstreamUrl,
