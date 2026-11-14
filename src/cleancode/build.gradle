@@ -18,9 +18,13 @@ repositories {
     mavenCentral()
 }
 
+ext['junit-jupiter.version'] = '5.14.3'
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
     testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'com.google.truth:truth:1.4.5'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
