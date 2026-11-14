@@ -26,6 +26,16 @@ public class SavingsAccount {
         this.introductoryMonths = introductoryMonths;
     }
 
+    /**
+     * Начисляет вступительную надбавку до даты окончания бонусного периода.
+     * В день окончания периода надбавка уже не начисляется.
+     *
+     * @param openingDate дата открытия счёта
+     * @param today дата, на которую рассчитывается ставка
+     * @param hasSberPrime наличие подписки СберПрайм
+     * @param totalPurchases сумма покупок за предыдущий календарный месяц
+     * @return процентная ставка целым числом, например 12 для 12%
+     */
     public int calculate(LocalDate openingDate, LocalDate today, boolean hasSberPrime,
                          BigDecimal totalPurchases) {
         int introductoryBonus = today.isBefore(openingDate.plusMonths(introductoryMonths))

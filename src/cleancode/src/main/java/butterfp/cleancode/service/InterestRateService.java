@@ -20,11 +20,15 @@ public class InterestRateService {
         this.transactionHistory = transactionHistory;
     }
 
-    public int calc(LocalDate openingDate, UUID clientId, LocalDate today) {
-        return calc(openingDate, clientId, today, AccountType.SAVINGS);
+    public int calculateRate(LocalDate openingDate, UUID clientId, LocalDate today) {
+        return calculateRate(openingDate, clientId, today, AccountType.SAVINGS);
     }
 
-    public int calc(LocalDate openingDate, UUID clientId, LocalDate today, AccountType accountType) {
+    /**
+     * Учитывает покупки за календарный месяц, предшествующий месяцу даты расчёта.
+     * Например, для любой даты в январе использует покупки за декабрь прошлого года.
+     */
+    public int calculateRate(LocalDate openingDate, UUID clientId, LocalDate today, AccountType accountType) {
         boolean hasSberPrime = clientData.hasSberPrime(clientId);
         YearMonth previousMonth = YearMonth.from(today).minusMonths(1);
         BigDecimal totalPurchases = transactionHistory.totalPurchases(clientId, previousMonth);

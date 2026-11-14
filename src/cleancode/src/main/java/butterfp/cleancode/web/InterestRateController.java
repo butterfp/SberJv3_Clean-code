@@ -34,9 +34,17 @@ public class InterestRateController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Дата не должна быть в будущем");
         }
 
-        return interestRateService.calc(request.date(), request.id(), today, request.accountType());
+        return interestRateService.calculateRate(request.date(), request.id(), today, request.accountType());
     }
 
+    /**
+     * Данные запроса на расчёт ставки по накопительному счёту.
+     *
+     * @param date дата открытия счёта
+     * @param id идентификатор клиента
+     * @param accountType тип счёта. При отсутствии поля или значении {@code null}
+     *                    используется {@link AccountType#SAVINGS}
+     */
     public record RateRequest(LocalDate date, UUID id, AccountType accountType) {
         public RateRequest {
             if (accountType == null) {

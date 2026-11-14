@@ -24,7 +24,7 @@ class InterestRateServiceTest {
         when(transactionHistory.totalPurchases(clientId, previousMonth)).thenReturn(BigDecimal.valueOf(50_000));
         InterestRateService service = new InterestRateService(clientData, transactionHistory);
 
-        int rate = service.calc(openingDate, clientId, today);
+        int rate = service.calculateRate(openingDate, clientId, today);
 
         assertThat(rate).isEqualTo(16);
     }
